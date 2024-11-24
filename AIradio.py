@@ -296,7 +296,9 @@ def get_title(client,content):
     タイトルと要約を取得。
     
     """
-    text = f'次の文章を要約して、人を惹きつけるタイトルをつけてください。\n{content}'
+    text = f'## 依頼\n次の文章を要約して、人を惹きつけるタイトルをつけてください。\
+    \n## アウトプットのフォーマット\nタイトル：\n要約：\
+    \n## 文章\n{content}'
     return get_reply(client,text)
 
 def main():
@@ -400,14 +402,16 @@ def main():
     print("エンディングの収録終了")
 
     #音声ファイル処理
+    file_title = title.split("\n")[0]
+    file_title = file_title[5]
     body = opening_audio + free_talk_audio + oogiri_audio + iwasetaikoto_audio + ending_audio
     play(body)
-    body.export("output.wav", format="wav")
+    body.export(f'output/{file_title}.wav', format="wav")
 
     #テキストファイルの処理
-    with open("cointent.txt", "wb") as f:
+    with open(f'output/{file_title}.txt', "wb") as f:
         f.write(text.encode("utf-8"))
-    print("全処理の完了。output.wav, content.txtを確認してください。")
+    print(f'全処理の完了。{file_title}.wav, {file_title}.txtを確認してください。')
    
 if __name__=="__main__":
     main()

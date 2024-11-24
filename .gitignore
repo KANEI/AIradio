@@ -1,0 +1,11 @@
+.venv
+.env
+.config
+.ssh
+
+#出力先
+output
+audio
+
+#テスト環境
+test.py
