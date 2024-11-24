@@ -403,7 +403,7 @@ def main():
 
     #音声ファイル処理
     file_title = title.split("\n")[0]
-    file_title = file_title[5]
+    file_title = file_title[5:]
     body = opening_audio + free_talk_audio + oogiri_audio + iwasetaikoto_audio + ending_audio
     play(body)
     body.export(f'output/{file_title}.wav', format="wav")
